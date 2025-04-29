@@ -1,0 +1,101 @@
+[gd_scene load_steps=11 format=3 uid="uid://bnfxrxkgltbyi"]
+
+[ext_resource type="Script" path="res://end.gd" id="1_544f6"]
+[ext_resource type="Texture2D" uid="uid://bjulkx6ps508m" path="res://images/Tomb of the Tides icon.png" id="2_h2bj5"]
+[ext_resource type="AudioStream" uid="uid://gk8vnadl57jy" path="res://sound effects/UI SFX/select_007.ogg" id="3_nqlcg"]
+[ext_resource type="AudioStream" uid="uid://jrikuxdh8hko" path="res://sound effects/UI SFX/click_001.ogg" id="4_d4u14"]
+[ext_resource type="AudioStream" uid="uid://co3skoojyfy6r" path="res://sound effects/music/Tomb of Tides Win.wav" id="5_g2tx5"]
+[ext_resource type="PackedScene" uid="uid://dxcmllroewd37" path="res://Scenes/water.tscn" id="6_4evdl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jcwkq"]
+bg_color = Color(0.419608, 0.109804, 0.172549, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.0784314, 0.0784314, 0.776471, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_871m5"]
+bg_color = Color(0.529412, 0.145098, 0.231373, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.290196, 0.52549, 0.909804, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="Theme" id="Theme_3ngrn"]
+Button/styles/hover = SubResource("StyleBoxFlat_jcwkq")
+Button/styles/normal = SubResource("StyleBoxFlat_871m5")
+
+[sub_resource type="SystemFont" id="SystemFont_j4h2x"]
+font_names = PackedStringArray("Black Ops One")
+subpixel_positioning = 0
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(963, 589)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -178.0
+offset_top = -95.0
+offset_right = 185.0
+offset_bottom = 102.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_544f6")
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer"]
+texture_filter = 1
+position = Vector2(330.5, -117)
+scale = Vector2(0.725, 0.576389)
+texture = ExtResource("2_h2bj5")
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Thanks for playing our demo! 
+Please check out Dev Logs for future updates."
+horizontal_alignment = 1
+
+[node name="ExitGameButton" type="Button" parent="VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme = SubResource("Theme_3ngrn")
+theme_override_colors/font_hover_color = Color(0.290196, 0.52549, 0.909804, 1)
+theme_override_colors/font_color = Color(0.0784314, 0.0784314, 0.776471, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("SystemFont_j4h2x")
+theme_override_font_sizes/font_size = 40
+text = "Exit"
+
+[node name="Click" type="AudioStreamPlayer2D" parent="VBoxContainer/ExitGameButton"]
+stream = ExtResource("3_nqlcg")
+volume_db = 15.0
+
+[node name="Hover" type="AudioStreamPlayer2D" parent="VBoxContainer/ExitGameButton"]
+stream = ExtResource("4_d4u14")
+
+[node name="Victory Song" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_g2tx5")
+volume_db = 4.0
+
+[node name="Node2D" parent="." instance=ExtResource("6_4evdl")]
+z_index = -1
+position = Vector2(-972, -589)
+
+[connection signal="mouse_entered" from="VBoxContainer/ExitGameButton" to="VBoxContainer" method="_on_exit_game_button_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/ExitGameButton" to="VBoxContainer" method="_on_exit_game_button_pressed"]

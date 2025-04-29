@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://dl1wvlt36qef8"]
+
+[ext_resource type="PackedScene" uid="uid://hra8u2qmy60" path="res://Sewer2.glb" id="1_y6t2i"]
+
+[node name="Sewer2" instance=ExtResource("1_y6t2i")]
